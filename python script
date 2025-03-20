@@ -1,0 +1,19 @@
+import json
+
+# Sample mock data (instead of making a real API request)
+mock_flight_data = {
+    "data": [
+        {
+            "flight": {"iata": "LH123"},
+            "airline": {"name": "Lufthansa"},
+            "departure": {"iata": "FRA"},
+            "arrival": {"iata": "MUC"},
+            "departure_time": "2025-03-21 08:00:00",
+            "arrival_time": "2025-03-21 09:00:00",
+            "flight_status": "Delayed"
+        }
+    ]
+}
+
+# Print the sample response
+print(json.dumps(mock_flight_data, indent=4))
