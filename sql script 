@@ -1,0 +1,41 @@
+-- Create the database
+CREATE DATABASE FlightTracker;
+USE FlightTracker;
+
+-- Create Airports Table
+CREATE TABLE Airports (
+    AirportID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255),
+    IATA_Code VARCHAR(3) UNIQUE,
+    ICAO_Code VARCHAR(4) UNIQUE,
+    Country VARCHAR(100),
+    City VARCHAR(100),
+    Latitude DECIMAL(9,6),
+    Longitude DECIMAL(9,6)
+);
+
+-- Create Flights Table
+CREATE TABLE Flights (
+    FlightID INT PRIMARY KEY AUTO_INCREMENT,
+    Flight_Number VARCHAR(10),
+    Airline VARCHAR(255),
+    Departure_Airport VARCHAR(3),
+    Arrival_Airport VARCHAR(3),
+    Departure_Time DATETIME,
+    Arrival_Time DATETIME,
+    Status ENUM('On-Time', 'Delayed', 'Cancelled'),
+    Delay_Time INT DEFAULT 0
+);
+
+-- Insert Mock Airports Data
+INSERT INTO Airports (Name, IATA_Code, ICAO_Code, Country, City, Latitude, Longitude)
+VALUES 
+    ('Frankfurt Airport', 'FRA', 'EDDF', 'Germany', 'Frankfurt', 50.0333, 8.5706),
+    ('Munich Airport', 'MUC', 'EDDM', 'Germany', 'Munich', 48.3538, 11.7861),
+    ('Paris Charles de Gaulle', 'CDG', 'LFPG', 'France', 'Paris', 49.0097, 2.5479);
+
+-- Insert Mock Flights Data
+INSERT INTO Flights (Flight_Number, Airline, Departure_Airport, Arrival_Airport, Departure_Time, Arrival_Time, Status, Delay_Time)
+VALUES 
+    ('LH123', 'Lufthansa', 'FRA', 'MUC', '2025-03-21 08:00:00', '2025-03-21 09:00:00', 'Delayed', 130),
+    ('AF456', 'Air France', 'MUC', 'CDG', '2025-03-21 10:00:00', '2025-03-21 11:30:00', 'On-Time', 0);
